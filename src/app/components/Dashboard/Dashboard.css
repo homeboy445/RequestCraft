@@ -1,0 +1,36 @@
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--primary-color);
+}
+
+.dashboard-title-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 2px solid black;
+}
+
+.dashboard-title-section > h1 {
+    color: var(--text-color_1);
+    font-family: "Roboto", sans-serif;
+}
+
+.dashboard-title-section > button {
+    position: fixed;
+    right: 25px;
+    width: 6%;
+}
+
+.dashboard-search-bar {
+    margin-top: 2%;
+    margin-bottom: 4%;
+    width: 75%;
+    font-size: 1.4rem;
+}

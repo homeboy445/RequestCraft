@@ -1,0 +1,49 @@
+.dashboard-card-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+}
+
+.dashboard-ruleName-card {
+  border: 2px solid black;
+  background: pink;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-bottom: 2%;
+  height: 60px;
+  align-self: center;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: var(--secondary-color);
+}
+
+.dashboard-ruleName-card > .editSection {
+  align-self: center;
+}
+
+.dashboard-ruleName-card > .react-toggle,
+.dashboard-ruleName-card > p,
+.dashboard-ruleName-card > div {
+  align-self: center;
+  margin-left: 1%;
+  color: var(--text-color_1);
+  font-family: "Roboto", sans-serif;
+  font-size: 1.3rem;
+}
+
+.editSection {
+    width: 10%;
+}
+
+.editSection > img {
+    width: 20px;
+    height: 20px;
+    margin-right: 15%;
+    cursor: pointer;
+}
+
+.editSection > img:hover {
+    color: grey;
+}

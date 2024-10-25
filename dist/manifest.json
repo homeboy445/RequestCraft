@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "RequestCraft",
+  "version": "1.0",
+  "description": "This is a description of my Chrome Extension.",
+  "permissions": [
+    "webRequest",
+    "declarativeNetRequest",
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"]
+    }
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ]
+}

@@ -1,0 +1,48 @@
+
+.url_filter_container {
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.url_filter {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    margin-bottom: 2%;
+}
+
+.url_filter_bx {
+    display: flex;
+    justify-content: center;
+    width:90%;
+    background: var(--tertiary-color);
+    padding: 1.5%;
+    border-radius: 4px;
+}
+
+.url_filter_bx > input {
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid;
+    margin-left: 2%;
+    width: 90%;
+}
+
+#urlOperators {
+    height: 30px;
+    border-radius: 4px;
+    font-family: 'Roboto';
+    font-size: 1.2rem;
+}
+
+#addFilterBtn {
+    background: var(--secondary-color);
+    border: none;
+    color: white;
+    margin-left: 1%;
+    border-radius: 5px;
+    width: 8%;
+    font-size: 1.2rem;
+}

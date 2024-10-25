@@ -1,0 +1,1 @@
+{"version":3,"file":"contentScript.js","mappings":";;;;;;AAAa;AACb","sources":["webpack://requestcraft/./src/content/contentScript.ts"],"sourcesContent":["\"use strict\";\nconsole.log(\"Hello there!\");\n"],"names":[],"sourceRoot":""}

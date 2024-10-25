@@ -1,0 +1,50 @@
+
+.ruleSelector {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--primary-color);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.ruleSelector-titleSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ruleSelector-titleSection > h1 {
+    font-family: 'Roboto';
+    font-size: 2rem;
+    color: var(--text-color_1);
+}
+
+.ruleSelector-titleSection > h2 {
+    font-family: 'Roboto';
+    font-size: 1;
+    font-weight: 300;
+    margin-top: -3%;
+    color: var(--text-color_1);
+}
+
+.ruleSelector-card-section {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    width: 100%;
+    grid-gap: 2%;
+    margin-left: 5%;
+}
+
+.ruleSelector-card {
+    width: 250px;
+    height: 200px;
+    padding: 2%;
+    border: 2px solid black;
+    background: var(--tertiary-color);
+}
+

@@ -1,5 +1,5 @@
 import { DynamicRuleHandler } from ".";
-import { RequestResponseHeaders, Rule } from "../types";
+import { RequestResponseHeaders, Rule } from "../../types/types";
 
 interface HeaderParam {
   priority?: number;

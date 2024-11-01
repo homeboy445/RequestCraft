@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = {
   mode: 'development', // Change to 'production' for production build
@@ -68,7 +69,8 @@ module.exports = {
         //   { from: 'public/icon48.png', to: 'icon48.png' },
         //   { from: 'public/icon128.png', to: 'icon128.png' }
         ]
-    })
+    }),
+    new MonacoWebpackPlugin()
   ],
   devtool: 'source-map',
   devServer: {

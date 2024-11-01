@@ -1,4 +1,4 @@
-import { Rule } from "../types";
+import { Rule } from "../../types/types";
 
 const chrome = (self as any).chrome;
 

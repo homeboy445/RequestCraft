@@ -1,11 +1,11 @@
 import * as jQuery from "jquery";
-import { ContentRuleStore, UrlFilter, UrlOperators, EventsEnums, REQUEST_MODIFICATION_TYPES, INJECTABLE_CONTENT_TYPES } from "../../types";
+import { ContentRuleStore, UrlFilterConfig, UrlOperators, EventsEnums, REQUEST_MODIFICATION_TYPES, INJECTABLE_CONTENT_TYPES } from "../../types";
 
 class InjectableContent {
     private jsRuleStore: ContentRuleStore[] = [];
     private cssRuleStore: ContentRuleStore[] = [];
 
-    public addJSRule(config: { code: string, srcUrl: string, urlFilter: UrlFilter }) {
+    public addJSRule(config: { code: string, srcUrl: string, urlFilter: UrlFilterConfig }) {
         const { code, srcUrl, urlFilter } = config;
         const ruleConfig: ContentRuleStore = { id: `rqc-js-code-${this.jsRuleStore.length + 1}`, urlFilter, element: jQuery() };
         let scriptTag;
@@ -19,7 +19,7 @@ class InjectableContent {
         this.jsRuleStore.push({ ...ruleConfig, element: scriptTag });
     }
 
-    public addCSSRule(config: { styleSheetContent: string, link: string, urlFilter: UrlFilter }) {
+    public addCSSRule(config: { styleSheetContent: string, link: string, urlFilter: UrlFilterConfig }) {
         const { styleSheetContent, link, urlFilter } = config;
         const ruleConfig: ContentRuleStore = { id: `rqc-css-code-${this.cssRuleStore.length + 1}`, urlFilter, element: jQuery() };
         let styleTag;
@@ -37,7 +37,7 @@ class InjectableContent {
 
     public remove() {}
 
-    private performURLComparison(urlFilter: UrlFilter, currentUrl: string = window.location.href): boolean {
+    private performURLComparison(urlFilter: UrlFilterConfig, currentUrl: string = window.location.href): boolean {
         const targetUrl = urlFilter.targetUrl;
         const targetRegx = urlFilter.targetRegex;
         switch(urlFilter.op) {

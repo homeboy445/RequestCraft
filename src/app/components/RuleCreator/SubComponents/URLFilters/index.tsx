@@ -1,31 +1,53 @@
-import { useState } from "react";
-import { v4 as uuid } from "uuid";
-import "./base.css";
+import { useEffect, useState } from "react";
+import "./styles.css";
+
+enum Operators {
+  AND = "AND",
+  OR = "OR",
+}
 
 interface URLFilter {
   urlOp: string;
   target: string;
-  op: "AND" | "OR";
+  op: Operators;
 }
 
-const URLFilterComponent = () => {
-  const baseFilter: URLFilter = { urlOp: "URL Matches", target: "", op: "AND" };
-  const [urlFilters, setUrlFilters] = useState<URLFilter[]>([baseFilter]);
+const URLFilterComponent = ({
+  urlFilters,
+  updateUrlFilters,
+}: {
+  urlFilters: Array<URLFilter>,
+  updateUrlFilters: (filterObj: URLFilter[]) => void;
+}) => {
+  const baseFilter: URLFilter = {
+    urlOp: "URL Matches",
+    target: "",
+    op: Operators.AND,
+  };
+  // const [urlFilters, setUrlFilters] = useState<URLFilter[]>(urlFilterList);
+
+  useEffect(() => {
+    console.log(">> URL Filters changed: ", urlFilters);
+  }, [urlFilters]);
+
+  const updateAllURLFilters = (urlFilters: URLFilter[]) => {
+    // setUrlFilters(urlFilters);
+    updateUrlFilters(urlFilters);
+  };
 
   const addFilter = () => {
     const filters = [...urlFilters];
-    filters.pop();
-    filters.push({ urlOp: selectedOp, target: targetUrl, op: "AND" });
-    if (filters.length < 5) {
-      filters.push(baseFilter);
+    if (filters.length >= 5) {
+      return;
     }
-    setUrlFilters(filters);
+    filters.push(baseFilter);
+    updateAllURLFilters(filters);
   };
 
   const updateFilter = (index: number, updatedFilter: URLFilter) => {
     const filters = [...urlFilters];
     filters[index] = updatedFilter;
-    setUrlFilters(filters);
+    updateAllURLFilters(filters);
   };
 
   return (
@@ -37,7 +59,7 @@ const URLFilterComponent = () => {
           urlFilters.length >= 5 && index === urlFilters.length - 1;
         const currentConfig: URLFilter = filter;
         return (
-          <div key={uuid()} className="url_filter">
+          <div className="url_filter">
             <div className="url_filter_bx">
               <select
                 id="urlOperators"
@@ -55,11 +77,12 @@ const URLFilterComponent = () => {
               <input
                 type="text"
                 required
+                key={index}
                 value={filter.target}
                 onChange={(e) => {
-                  console.log(e.target.value);
-                  const updatedFilter = { ...filter, target: e.target.value };
-                  updateFilter(index, updatedFilter);
+                  const filterObj = { ...filter };
+                  filterObj.target = e.target.value;
+                  updateFilter(index, filterObj);
                 }}
               />
             </div>
@@ -71,7 +94,9 @@ const URLFilterComponent = () => {
                     addFilter();
                   } else {
                     currentConfig.op =
-                      currentConfig.op === "AND" ? "OR" : "AND";
+                      currentConfig.op === Operators.AND
+                        ? Operators.OR
+                        : Operators.AND;
                     updateFilter(index, currentConfig);
                   }
                 }}
@@ -85,7 +110,8 @@ const URLFilterComponent = () => {
                 onClick={() => {
                   const filters = [...urlFilters];
                   filters.splice(index, 1);
-                  setUrlFilters(filters);
+                  // setUrlFilters(filters);
+                  updateAllURLFilters(filters);
                 }}
               >
                 -

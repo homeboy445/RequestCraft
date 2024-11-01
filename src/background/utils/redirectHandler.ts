@@ -1,5 +1,5 @@
 import { DynamicRuleHandler } from ".";
-import { Rule } from "../types";
+import { Rule } from "../../types/types";
 
 class RedirectionHandler extends DynamicRuleHandler {  
     add(params: { priority?: number; redirectUrl: string; urlFilter: string }) {

@@ -1,4 +1,4 @@
-import { GenericObject } from "./types";
+import { GenericObject } from "../types/types";
 import headerHandler from "./utils/headerHandler";
 import redirectHandler from "./utils/redirectHandler";
 

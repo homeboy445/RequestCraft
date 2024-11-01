@@ -1,7 +1,10 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import "./RuleCreator.css";
 import { InjectableStore, RuleProperties, RuleStore } from "../../../types";
 import ErrorToaster from "./SubComponents/URLFilters/ErrorToaster";
+import backArrowIcon from "../../assets/backArrow.svg";
+import editIcon from "../../assets/editIcon2.svg";
 
 enum Operators {
   AND = "AND",
@@ -20,6 +23,7 @@ const RuleCreator = ({ type, name, Child }: RuleProperties) => {
     target: "",
     op: Operators.AND,
   };
+  const navigator = useNavigate();
   const [showButtons, setShowButtons] = React.useState<boolean>(false);
   const [errorMessage, updateErrorMessage] = React.useState<string>("");
   const ruleStore = React.useRef<RuleStore>({
@@ -75,6 +79,14 @@ const RuleCreator = ({ type, name, Child }: RuleProperties) => {
   return (
     <div className="rules-sel-main">
       <div className="rules-sel-title-section">
+        <img
+          src={backArrowIcon as unknown as string}
+          alt="go back"
+          className="back_arrow abs_top_left"
+          onClick={() => {
+            navigator(-1);
+          }}
+        />
         <h1>{type}</h1>
         <div className={`rules-sel-btn-section ${showButtons ? "" : "hidden"}`}>
           <button
@@ -95,7 +107,10 @@ const RuleCreator = ({ type, name, Child }: RuleProperties) => {
           </button>
         </div>
       </div>
-      <h2>{name || `[Rename your rule here...]`}</h2>
+      <div className="rules-edit-name">
+        <h2>{name || `[Rename your rule here...]`}</h2>
+        <img src={editIcon as unknown as string} alt="edit" />
+      </div>
       <Child
         toggleChangeHandlerBtn={setShowButtons}
         ruleStore={ruleStore.current}
@@ -103,11 +118,14 @@ const RuleCreator = ({ type, name, Child }: RuleProperties) => {
         changeListeners={{ onSave, onCancel, clearCallbacks: clear }}
         showErrorToaster={updateErrorMessage}
       />
-      {
-        errorMessage.trim() ? <ErrorToaster message={errorMessage} onCloseCallback={() => {
-          updateErrorMessage("");
-        }}/> : null
-      }
+      {errorMessage.trim() ? (
+        <ErrorToaster
+          message={errorMessage}
+          onCloseCallback={() => {
+            updateErrorMessage("");
+          }}
+        />
+      ) : null}
     </div>
   );
 };

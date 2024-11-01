@@ -124,3 +124,14 @@
     visibility: hidden;
     pointer-events: none;
 }
+
+.back_arrow {
+  width: 5%;
+  cursor: pointer;
+}
+
+.abs_top_left {
+  position: absolute;
+  top: 35px;
+  left: 15px;
+}
